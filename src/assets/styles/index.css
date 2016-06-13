@@ -1,0 +1,22 @@
+body {
+	margin: 0;
+}
+
+.overlay {
+	position: absolute; 
+	top: 0; 
+	left: 0;
+	width: 800px; 
+	height: 600px;
+}
+
+.content-center {
+	display: flex; 
+	align-items: center; 
+	justify-content: center;
+}
+
+.btn {
+	font-size: 4em;
+	padding: 0.2em 1em;
+}

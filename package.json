@@ -1,0 +1,55 @@
+{
+  "name": "big-brain-tower",
+  "version": "1.0.0",
+  "description": "math calculation game",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot --host 0.0.0.0",
+    "build": "cross-env NODE_ENV=production webpack --progress --colors -p",
+    "serve": "cross-env NODE_ENV=production webpack-dev-server --host 0.0.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webcom-components/big-brain-tower.git"
+  },
+  "author": "Elodie Hak <elodie.hak@orange.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webcom-components/big-brain-tower/issues"
+  },
+  "homepage": "https://github.com/webcom-components/big-brain-tower#readme",
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-react-constant-elements": "^6.9.1",
+    "babel-plugin-transform-react-inline-elements": "^6.8.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.2.7",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-1": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "cz-conventional-changelog": "^1.1.6",
+    "file-loader": "^0.8.5",
+    "ghooks": "^1.2.3",
+    "html-webpack-plugin": "^2.21.0",
+    "script-loader": "^0.7.0",
+    "style-loader": "^0.13.1",
+    "validate-commit-msg": "^2.6.1",
+    "webpack": "^1.13.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "ghooks": {
+      "commit-msg": "validate-commit-msg"
+    }
+  },
+  "dependencies": {
+    "cross-env": "^1.0.8",
+    "jquery": "^3.0.0",
+    "phaser": "^2.4.8"
+  }
+}
