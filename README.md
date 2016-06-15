@@ -26,5 +26,4 @@ Go to `http://localhost:8080` and you should see the app running!
 
 ## License
 
-
 This project is licensed under the MIT license
