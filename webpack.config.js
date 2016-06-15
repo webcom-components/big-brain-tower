@@ -18,7 +18,7 @@ const config = {
 	module: {
 		loaders: [
 			{ test: /\.js/, loaders: ['babel'], exclude: /node_modules/ },
-			{ test: /\.(jpg)|(png)$/, loader: 'file'},
+			{ test: /\.(jpg)|(png)$/, loader: 'file?name=assets/images/[name].[ext]'},
 			{ test: /\.frag$/, loader: 'file?name=assets/shaders/[name].[ext]'},
 			{ test: /\.css$/, loader: 'style!css?sourceMap'}
 		]
@@ -28,6 +28,7 @@ const config = {
 			template: './src/index.html',
 			inject: 'body'
 		}),
+		new webpack.OldWatchingPlugin(),
 		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
 	],
 	progress: true,
