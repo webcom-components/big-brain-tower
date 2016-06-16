@@ -10,7 +10,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
+figure, figcaption, footer, header,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -22,7 +22,7 @@ time, mark, audio, video {
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+footer, header, menu, nav, section {
 	display: block;
 }
 body {
@@ -55,45 +55,63 @@ body{
 	line-height: 20px;
 }
 
-#questionBloc{
-	height: 100px;
-	width: 400px;
-	color: grey;
-	margin: 0 auto;
-
-}
-
-#timerBloc{
-	height: 10px;
-	width: 450px;
-	color: lightgrey;
-	margin: 0 auto;
-}
-
-#answerBloc{
-	width: 400px;
-	height: 100px;
-	margin: 0;
+.wrapper{
+	display: flex;
+	flex-flow: column;
 	text-align: center;
-	border: 1px solid black;
-	margin: 0 auto;
-	display: flex;
+	width: 400px;
 }
 
-#bloc1, #bloc2, #bloc3{
-	height: 100px;
-	width: 100px;
-	margin: auto;
-	color: #b5e9f7;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+.questionBloc{
+	background-color: #595959;
+	padding: 60px;
 }
 
-.overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 800px;
-	height: 600px;
+.timerBloc {
+	background: #8f8f8f;
+	padding: 15px;
+}
+
+@media all and (min-width: 400px) {
+	.timerBloc { flex: 1 auto; }
+}
+@media all and (min-width: 400px) {
+	.wrapper    { flex: 3 0px; }
+	.questionBloc {
+		order: 1;
+	}
+	.timerBloc {
+		order: 2;
+	}
+}
+
+.answerBloc{
+    list-style: none;
+	display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+	flex-flow: row;
+	text-align: center;
+	width: 400px;
+}
+
+.bloc1, .bloc2, .bloc3{
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+	background-color: #b5e9f7;
+
+}
+
+@media all and (min-width: 400px) {
+	.answerBloc    { flex: 3 0px; }
+	.bloc1 {
+		order: 1;
+	}
+	.bloc2 {
+		order: 2;
+	}
+	.bloc3 {
+		order: 3;
+	}
 }

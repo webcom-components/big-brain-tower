@@ -77,7 +77,7 @@ function create() {
 
     //  Gameplay ----------------
 
-    
+
     gameplay = game.add.physicsGroup();
 
     ////>tower
@@ -87,60 +87,34 @@ function create() {
     ////>logo
     gameplay.game.add.sprite(680, 0, 'logo');
 
-/*
-<div id="questionBloc"></div>
-        <div id="timer"></div>
-
-        <div id="answerBloc">
-        <div id="bloc1"></div>
-        <div id="bloc2"></div>
-        <div id="bloc3"></div>
-    </div>
-*/
-
     var elements = $(`
-<div class="overlay" id="questionBloc"></div>
-        <div class="overlay" id="timerBloc"></div>
-        <div class="overlay" id="answerBloc">
-        <div id="bloc1"></div>
-        <div id="bloc2"></div>
-        <div id="bloc3"></div>
-    </div>
+  <div class="wrapper">
+         <div class="questionBloc"></div>
+        <div class="timerBloc"></div>
+  </div>
+  <div class="answerBloc">
+        <div class="bloc1"></div>
+        <div class="bloc2"></div>
+        <div class="bloc3"></div>
+  </div>
 `).appendTo('body');
 
 
     /////>question
-    questionBloc = document.getElementById("questionBloc");
-    questionBloc.style.backgroundColor = "#595959";
-    questionBloc.style.height = "100px";
-    questionBloc.style.width = "400px";
-    questionBloc.style.margin = "0 auto";
+    questionBloc = document.getElementsByClassName("questionBloc");
 
     /////>timer
-    timerBloc = document.getElementById("timerBloc");
-	timerBloc.style.height = "10px";
-	timerBloc.style.width = "400px";
-	timerBloc.style.backgroundColor = "#8f8f8f";
-	timerBloc.style.margin = "0 auto";
+    timerBloc = document.getElementsByClassName("timerBloc");
 
     ////>answer
-    answerBloc = document.getElementById("answerBloc");
-    answerBloc.style.width = "400px";
-    answerBloc.style.margin = "0 auto";
+    answerBloc = document.getElementsByClassName("answerBloc");
 
     ////>blocs
-    var bloc1 = document.getElementById("bloc1");
-    bloc1.style.width = "100px";
-    bloc1.style.height = "100px";
-    bloc1.style.backgroundColor = "#b5e9f7";
-     var bloc2 = document.getElementById("bloc2");
-    bloc2.style.width = "100px";
-    bloc2.style.height = "100px";
-    bloc2.style.backgroundColor = "#b5e9f7";
-     var bloc3 = document.getElementById("bloc3");
-    bloc3.style.width = "100px";
-    bloc3.style.height = "100px";
-    bloc3.style.backgroundColor = "#b5e9f7";
+    var bloc1 = document.getElementsByClassName("bloc1");
+
+    var bloc2 = document.getElementsByClassName("bloc2");
+
+    var bloc3 = document.getElementsByClassName("bloc3");
 
     // --------------------
 
