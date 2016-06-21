@@ -88,6 +88,7 @@ function create() {
     gameplay.game.add.sprite(680, 0, 'logo');
 
     var elements = $(`
+<div id="blocQuizz">
  <div id="quizz">
   <div class="wrapper">
          <div class="questionBloc">6 x 5 + 7</div>
@@ -99,6 +100,7 @@ function create() {
         <div class="bloc3">37</div>
   </div>
  </div>
+ </div>
   
 `).appendTo('body');
 
@@ -108,7 +110,7 @@ function create() {
 
     /////>timer
     timerBloc = document.getElementsByClassName("timerBloc");
-    //timerBloc.tint = 0xFF99CC;
+    timerBloc.tint = 0xFF99CC;
 
     ////>answer
     answerBloc = document.getElementsByClassName("answerBloc");

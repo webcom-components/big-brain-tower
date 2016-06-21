@@ -13,68 +13,85 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, menu, nav, section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 /*--------------------CSS de Calcul Mental---------------------*/
 
 body{
-    position: relative;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 20px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 20px;
+    height: 600px;
+    width: 800px;
 }
 
 #quizz{
-    margin: 0 auto;
     text-align: center;
+    display: table;
+    margin: auto;
     position: absolute;
-    top: 160px;
-    right: 160px;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 310px;
+
 }
 
+#blocQuizz{
+    position: absolute;
+    top: 150px;
+    left: 250px;
+    width: 400px;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 .wrapper{
-	display: flex;
-	flex-flow: column;
-	text-align: center;
-	width: 400px;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    width: 400px;
     box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .questionBloc{
-	background-color: #595959;
-	padding: 50px;
+    background-color: #595959;
+    padding: 50px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: bold;
     color: white;
@@ -82,31 +99,31 @@ body{
 }
 
 .timerBloc {
-	background: #8f8f8f;
-	padding: 18px;
+    background: #8f8f8f;
+    padding: 18px;
 }
 
 @media all and (min-width: 400px) {
-	.timerBloc { flex: 1 auto; }
+    .timerBloc { flex: 1 auto; }
 }
 @media all and (min-width: 400px) {
-	.wrapper    { flex: 3 0px; }
-	.questionBloc {
-		order: 1;
-	}
-	.timerBloc {
-		order: 2;
-	}
+    .wrapper    { flex: 3 0px; }
+    .questionBloc {
+        order: 1;
+    }
+    .timerBloc {
+        order: 2;
+    }
 }
 
 .answerBloc{
     list-style: none;
-	display: flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-around;
-	flex-flow: row;
-	text-align: center;
-	width: 400px;
+    flex-flow: row;
+    text-align: center;
+    width: 400px;
     margin-top: 30px;
 }
 
@@ -114,25 +131,28 @@ body{
     padding: 10px;
     width: 100px;
     height: 100px;
-	background-color: #b5e9f7;
+    background-color: #b5e9f7;
     box-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: bold;
     color: #595959;
     font-size: 40px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
 @media all and (min-width: 400px) {
-	.answerBloc    { flex: 3 0px; }
-	.bloc1 {
-		order: 1;
-	}
-	.bloc2 {
-		order: 2;
-	}
-	.bloc3 {
-		order: 3;
-	}
+    .answerBloc    { flex: 3 0px; }
+    .bloc1 {
+        order: 1;
+    }
+    .bloc2 {
+        order: 2;
+    }
+    .bloc3 {
+        order: 3;
+    }
 }
