@@ -1,32 +1,55 @@
-function getCalcul(level){
+function getCalcul(level) {
 
     //Calcul
-    function calculString(){
-        var nbre = Math.floor((Math.random() * 9) + 1);
-        var  calcul = nbre + " + " + nbre + " =";
+    function calculString() {
+        var a = Math.floor((Math.random() * 9) + 1);
+        var b = Math.floor((Math.random() * 9) + 1);
+        var calcul = a + " + " + b;
         return calcul;
     }
-    console.log(calcul);
+
+    var string = calculString();
+    console.log("addition:  " + calculString());
 
     //Resultat
-    function resultatCalcul(){
+    function resultatCalcul(calcul) {
         var resultat = eval(calcul);
         return resultat;
     }
-    console.log(resultat);
+
+    var reponse = resultatCalcul();
+    console.log("résultat:  " + resultatCalcul(string));
 
     //Porpositions réponses
-    function propReponses(){
+    function propReponses() {
         var prop1 = Math.floor((Math.random() * 99) + 1);
         var prop2 = Math.floor((Math.random() * 99) + 1);
-        var prop3 = resultat;
+        var prop3 = resultatCalcul(string);
 
         var tab = [prop1, prop2, prop3];
-        var random = tab[Math.floor(Math.random() * tab.length)];
-        return random;
+        return tab;
     }
-    console.log(random);
 
-    //Temps
+    console.log("Propositions:  " + propReponses());
+
+    //Time
+    function time() {
+        var timer = "5";
+        return timer;
+    }
+
+    console.log("Time:  " + time());
 
 }
+
+console.log(getCalcul());
+
+/*function verifyCalcul(calcul, resultat){
+ r = eval(calcul);
+ if (r == resultat){
+ return true;
+ }
+ else{
+ return false;
+ }
+ }*/
