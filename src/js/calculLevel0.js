@@ -1,3 +1,4 @@
+//---------------------------------- GET CALCUL
 function getCalcul(level) {
 
     //Calcul
@@ -9,16 +10,16 @@ function getCalcul(level) {
     }
 
     var string = calculString();
-    console.log("addition:  " + calculString());
+    //console.log("addition:  " + string);
 
     //Resultat
     function resultatCalcul(calcul) {
-        var resultat = eval(calcul);
+        var resultat = eval(string);
         return resultat;
     }
 
     var reponse = resultatCalcul();
-    console.log("résultat:  " + resultatCalcul(string));
+    //console.log("résultat:  " + reponse);
 
     //Porpositions réponses
     function propReponses() {
@@ -29,27 +30,47 @@ function getCalcul(level) {
         var tab = [prop1, prop2, prop3];
         return tab;
     }
-
-    console.log("Propositions:  " + propReponses());
+    var array = propReponses();
+    //console.log("Propositions:  " + propReponses());
 
     //Time
     function time() {
         var timer = "5";
         return timer;
     }
+    var chrono = time();
+    //console.log("Time:  " + time());
 
-    console.log("Time:  " + time());
-
+    return{
+        string: string,
+        number: reponse,
+        array: array,
+        object: chrono
+    }
 }
 
-console.log(getCalcul());
+var x = getCalcul();
+console.log(x);
 
-/*function verifyCalcul(calcul, resultat){
- r = eval(calcul);
- if (r == resultat){
- return true;
- }
- else{
- return false;
- }
- }*/
+//---------------------------------- VERIFY CALCUL
+
+function verifyCalcul(string, reponse){
+    r = string;
+    if (r == reponse){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+var v = verifyCalcul();
+console.log(v);
+
+//---------------------------------- PLAYER STATE
+
+function playerState(){
+    //Level
+    //Lives
+    //Iteration
+
+}
