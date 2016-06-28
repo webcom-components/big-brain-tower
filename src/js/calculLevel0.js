@@ -41,16 +41,18 @@ function getCalcul(level) {
     var chrono = time();
     //console.log("Time:  " + time());
 
+    //Return
     return{
-        string: string,
-        number: reponse,
-        array: array,
-        object: chrono
+        calculString: string,
+        responseNumber: reponse,
+        responseArray: array,
+        timer: chrono
     }
 }
 
-var x = getCalcul();
-console.log(x);
+//Console.log
+var gc = getCalcul();
+console.log(gc);
 
 //---------------------------------- VERIFY CALCUL
 
@@ -63,14 +65,59 @@ function verifyCalcul(string, reponse){
         return false;
     }
 }
-var v = verifyCalcul();
-console.log(v);
+var vc = verifyCalcul();
+console.log(vc);
 
 //---------------------------------- PLAYER STATE
 
 function playerState(){
-    //Level
-    //Lives
-    //Iteration
 
+    //Iteration
+    function question(number){
+        for (var n=1; n<10; n++){
+            number ++;
+        }
+        if (n>10){
+            n= 1;
+        }
+        return number;
+    }
+    var ques = question();
+    //console.log(ques);
+
+    //Level
+    function level(floor){
+        floor = 0;
+        if (ques = 10){
+            floor ++;
+        }
+        return floor;
+    }
+    var lvl = level();
+    //console.log(lvl);
+
+    //Life
+    function lives(){
+        var life = 3;
+        if (verifyCalcul() === false){
+            life --;
+        }
+        if (life === 0){
+            console.log("Game Over");
+        }
+        return life;
+    }
+    var lf = lives();
+    //console.log(lf);
+
+    //Return
+    return{
+        questionNumber: ques,
+        levelNumber: lvl,
+        livesNumber: lf
+    }
 }
+
+//Console.log
+var ps = playerState();
+console.log(ps);
