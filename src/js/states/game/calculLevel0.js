@@ -1,5 +1,5 @@
 //---------------------------------- calculString
-function calculString() {
+export function calculString() {
     var a = Math.floor((Math.random() * 9) + 1);
     var b = Math.floor((Math.random() * 9) + 1);
     var calcul = a + " + " + b;
@@ -10,7 +10,7 @@ var string = calculString();
 //console.log("addition:  " + string);
 
 //---------------------------------- resultatCalcul
-function resultatCalcul(calcul) {
+export function resultatCalcul(calcul) {
     var resultat = eval(string);
     return resultat;
 }
@@ -19,7 +19,7 @@ var reponse = resultatCalcul();
 //console.log("résultat:  " + reponse);
 
 //---------------------------------- propReponses
-function propReponses() {
+export function propReponses() {
     var prop1 = Math.floor((Math.random() * 99) + 1);
     var prop2 = Math.floor((Math.random() * 99) + 1);
     var prop3 = resultatCalcul(string);
@@ -39,7 +39,7 @@ var chrono = time();
 //console.log("Time:  " + time());
 
 //---------------------------------- GET CALCUL
-function getCalcul(level) {
+export function getCalcul(level) {
     //Return ----------------------
     return{
         calculString: string,
@@ -55,7 +55,7 @@ console.log(gc);
 
 //---------------------------------- VERIFY CALCUL
 
-function verifyCalcul(resultat, reponse){
+export function verifyCalcul(resultat, reponse){
 
     if (resultat == reponse){
         return true;
@@ -125,34 +125,3 @@ console.log(vc);
 
 //---------------------------------- JASMINE TESTS
 
-describe("getCalcul", function() {
-    it("should return correct result", function() {
-        var gc = getCalcul();
-        expect(gc.calculString).toBeDefined();
-    });
-});
-
-describe("resultatCalcul", function() {
-
-    it("checks the result is the same as getCalcul", function() {
-        var cs = calculString(string);
-        var rc = resultatCalcul(reponse);
-        expect(cs).toEqual(rc);
-    });
-});
-
-describe("verifyCalcul", function() {
-    it("The 'toBeTruthy' matcher is for boolean casting testing", function() {
-        vc = verifyCalcul();
-        expect(vc).toBeTruthy();
-    });
-});
-
-describe("propReponses", function() {
-    it("should contain resultatCalcul", function() {
-        var pr = propReponses();
-        var rc = resultatCalcul();
-
-        expect(pr.propReponses).toContain(rc.resultatCalcul);
-    });
-});
