@@ -1,57 +1,15 @@
-function getCalcul(level) {
+import '../assets/styles/index.css';
 
-    //Calcul
-    function calculString() {
-        var a = Math.floor((Math.random() * 9) + 1);
-        var b = Math.floor((Math.random() * 9) + 1);
-        var calcul = a + " + " + b;
-        return calcul;
-    }
+import LoginState from './states/login';
+import MenuState from './states/menu';
+import GameState from './states/game';
+import ScoresState from './states/score';
 
-    var string = calculString();
-    console.log("addition:  " + calculString());
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game');
 
-    //Resultat
-    function resultatCalcul(calcul) {
-        var resultat = eval(calcul);
-        return resultat;
-    }
+game.state.add('Login', LoginState);
+game.state.add('Menu', MenuState);
+game.state.add('Game', GameState);
+game.state.add('Score', ScoresState);
 
-    var reponse = resultatCalcul();
-    console.log("résultat:  " + resultatCalcul(string));
-
-    //Porpositions réponses
-    function propReponses() {
-        var prop1 = Math.floor((Math.random() * 99) + 1);
-        var prop2 = Math.floor((Math.random() * 99) + 1);
-        var prop3 = resultatCalcul(string);
-
-        var tab = [prop1, prop2, prop3];
-        return tab;
-    }
-
-    console.log("Propositions:  " + propReponses());
-
-    //Time
-    function time() {
-        var timer = "5";
-        return timer;
-    }
-
-    console.log("Time:  " + time());
-
-}
-
-getCalcul();
-
-/*function verifyCalcul(string, reponse){
- r = eval(calcul);
- if (r == resultat){
- return true;
- }
- else{
- return false;
- }
- }
- verifyCalcul
- */
+game.state.start('Login');
