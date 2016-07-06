@@ -142,8 +142,8 @@ function verifyCalcul(resultat, reponse){
     }
 }
 //Console.log ----------------------
-var vc = verifyCalcul(gc.responseNumber, eval(gc.calculString));
-console.log(vc);
+//var vc = verifyCalcul(gc.responseNumber, eval(gc.calculString));
+//console.log(vc);
 
 
 

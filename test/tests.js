@@ -6,22 +6,21 @@ describe('test example', () => {
 	});
 });
 
-describe("getCalcul", function() {
+xdescribe("getCalcul", function() {
 	it("should return correct result", function() {
 		var gc = getCalcul();
 		expect(gc.calculString).to.not.be.undefined;
 	});
 });
 
-describe("verifyCalcul", function() {
+xdescribe("verifyCalcul", function() {
 	it("The 'toBeTruthy' matcher is for boolean casting testing", function() {
 		vc = verifyCalcul();
 		expect(vc).to.be.true;
 	});
 });
 
-describe("resultatCalcul", function() {
-
+xdescribe("resultatCalcul", function() {
 	it("checks the result is the same as getCalcul", function() {
 		var cs = calculString();
 		var rc = resultatCalcul(cs);
@@ -29,7 +28,7 @@ describe("resultatCalcul", function() {
 	});
 });
 
-describe("propReponses", function() {
+xdescribe("propReponses", function() {
 	it("should contain resultatCalcul", function() {
 		var pr = propReponses();
 		var rc = resultatCalcul();
