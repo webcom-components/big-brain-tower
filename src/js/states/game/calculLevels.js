@@ -5,7 +5,7 @@ function getRandom(min, max) {
 
 //---------------------------------- calculString
 function calculString(level) {
-    var a, b, operateur;
+    var a, b, operateur, opNumber;
 
     if (level===0) {
         a = getRandom(1, 9);
@@ -20,7 +20,7 @@ function calculString(level) {
         if (opNumber === 1) {
             operateur = '+';
         }
-        else{
+        else if (opNumber === 2) {
             operateur = '-';
         }
     }
@@ -40,7 +40,7 @@ function calculString(level) {
         }
     }
 
-    else if (level >3 && level <= 9) {
+    else if (level >=3 && level <= 9) {
         a = getRandom(10, 19);
         b = getRandom(10, 19);
         opNumber = getRandom(1,2,3,4);
@@ -59,8 +59,8 @@ function calculString(level) {
     }
 
     else if (level >= 10) {
-        a = Math.floor((Math.random() * 29 * level) + 10 * level);
-        b = Math.floor((Math.random() * 29 * level) + 10 * level);
+        a = Math.floor((Math.random() * 19 * level) + 10 * level);
+        b = Math.floor((Math.random() * 19 * level) + 10 * level);
         opNumber = getRandom(1,2,3,4);
         if (opNumber === 1) {
             operateur = '+';
@@ -79,18 +79,15 @@ function calculString(level) {
     var calcul = a + operateur + b;
     return calcul;
 }
+//console.log(calculString(20));
 
 var string = calculString();
-//console.log("addition:  " + string);
 
 //---------------------------------- resultatCalcul
 function resultatCalcul(calcul) {
     var resultat = eval(string);
     return resultat;
 }
-
-var reponse = resultatCalcul();
-//console.log("résultat:  " + reponse);
 
 //---------------------------------- propReponses
 function propReponses(reponse) {
@@ -101,16 +98,12 @@ function propReponses(reponse) {
     var tab = [prop1, prop2, prop3];
     return tab;
 }
-var array = propReponses();
-//console.log("Propositions:  " + propReponses());
 
 //---------------------------------- time
 function time() {
     var timer = "5";
     return timer;
 }
-
-//console.log("Time:  " + time());
 
 //---------------------------------- GET CALCUL
 function getCalcul(level) {
@@ -128,7 +121,6 @@ function getCalcul(level) {
 
 //Console.log ----------------------
 console.log(getCalcul());
-console.log(getCalcul());
 
 //---------------------------------- VERIFY CALCUL
 
@@ -141,72 +133,3 @@ function verifyCalcul(resultat, reponse){
         return false;
     }
 }
-//Console.log ----------------------
-//var vc = verifyCalcul(gc.responseNumber, eval(gc.calculString));
-//console.log(vc);
-
-
-
-//---------------------------------- PLAYER STATE (TEMP)
-
-/*function playerState(){
-
- Iteration ----------------------
- function question(number){
- for (var n=1; n<10; n++){
- number ++;
- }
- if (n>10){
- n= 1;
- }
- return number;
- }
- var ques = question();
- console.log(ques);
-
- <<<<<<< Updated upstream
- Level ----------------------
- function level(floor){
- floor = 0;
- if (ques == 10){
- floor ++;
- }
- return floor;
- }
- var lvl = level();
- console.log(lvl);
-
- Life ----------------------
- function lives(){
- var life = 3;
- if (verifyCalcul() === false){
- life --;
- =======
- getCalcul();
-
- /*function verifyCalcul(string, reponse){
- r = eval(calcul);
- if (r == resultat){
- return true;
- >>>>>>> Stashed changes
- }
- if (life === 0){
- console.log("Game Over");
- }
- <<<<<<< Updated upstream
- return life;
- }
- var lf = lives();
- console.log(lf);
-
- Return ----------------------
- return{
- questionNumber: ques,
- levelNumber: lvl,
- livesNumber: lf
- };
- }
-
- Console.log ----------------------
- var ps = playerState();
- console.log(ps);*/

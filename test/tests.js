@@ -1,4 +1,11 @@
 import { expect } from 'chai';
+import {
+	getCalcul,
+	calculString,
+	resultatCalcul,
+	verifyCalcul,
+	propReponses
+} from '../src/js/states/game/calculLevels';
 
 describe('test example', () => {
 	it('should be ok', () => {
@@ -9,16 +16,16 @@ describe('test example', () => {
 xdescribe("getCalcul", function() {
 	it("should return correct result", function() {
 		var gc = getCalcul();
-		expect(gc.calculString).to.not.be.undefined;
+		expect(gc.calculString).to.be.defined;
 	});
 });
 
-xdescribe("verifyCalcul", function() {
-	it("The 'toBeTruthy' matcher is for boolean casting testing", function() {
+/*xdescribe("verifyCalcul", function() {
+	it("The 'toBeTruthy' matcher is for boolean casting testing", function() => {
 		vc = verifyCalcul();
 		expect(vc).to.be.true;
 	});
-});
+});*/
 
 xdescribe("resultatCalcul", function() {
 	it("checks the result is the same as getCalcul", function() {
