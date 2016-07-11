@@ -4,6 +4,7 @@ function getRandom(min, max) {
 }
 
 //---------------------------------- calculString
+calculString
 function calculString(level) {
     var a, b, operateur, opNumber;
 
@@ -28,7 +29,7 @@ function calculString(level) {
     else if (level===2) {
         a = getRandom(10, 19);
         b = getRandom(10, 19);
-        opNumber = getRandom(1,2,3);
+        opNumber = getRandom(1,3);
         if (opNumber === 1) {
             operateur = '+';
         }
@@ -41,9 +42,9 @@ function calculString(level) {
     }
 
     else if (level >=3 && level <= 9) {
-        a = getRandom(10, 19);
-        b = getRandom(10, 19);
-        opNumber = getRandom(1,2,3,4);
+        a = getRandom(10, 29);
+        b = getRandom(10, 29);
+        opNumber = getRandom(1,4);
         if (opNumber === 1) {
             operateur = '+';
         }
@@ -61,7 +62,7 @@ function calculString(level) {
     else if (level >= 10) {
         a = Math.floor((Math.random() * 19 * level) + 10 * level);
         b = Math.floor((Math.random() * 19 * level) + 10 * level);
-        opNumber = getRandom(1,2,3,4);
+        opNumber = getRandom(1,4);
         if (opNumber === 1) {
             operateur = '+';
         }
@@ -91,8 +92,8 @@ function resultatCalcul(calcul) {
 
 //---------------------------------- propReponses
 function propReponses(reponse) {
-    var prop1 = Math.floor((Math.random() * 99) + 1);
-    var prop2 = Math.floor((Math.random() * 99) + 1);
+    var prop1 =getRandom(1, 99);;
+    var prop2 = getRandom(1, 99);;
     var prop3 = reponse;
 
     var tab = [prop1, prop2, prop3];
@@ -109,7 +110,7 @@ function time() {
 function getCalcul(level) {
 
     //Return ----------------------
-    var cs = calculString();
+    var cs = calculString(2);
     var chrono = time();
     return{
         calculString: cs,

@@ -2,7 +2,7 @@ import { getCalcul } from './getCalcul';
 
 export default class {
 	constructor() {
-		
+
 	}
 
 	displayPause() {
@@ -23,15 +23,15 @@ export default class {
 		this.game.input.keyboard.onDownCallback = e => {
 			if (!this.game.paused) {
 				if (e.keyCode === Phaser.Keyboard.ESC) {
-		 			this.game.paused = true;
-		 			if (this.game.paused) {
-			 			this.displayPause();
-		 			}
+					this.game.paused = true;
+					if (this.game.paused) {
+						this.displayPause();
+					}
 				}
 			}
 			else {
-	 			this.game.paused = false;
-	 			this.hidePause();
+				this.game.paused = false;
+				this.hidePause();
 			}
 		};
 	}

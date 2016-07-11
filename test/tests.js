@@ -13,19 +13,21 @@ describe('test example', () => {
 	});
 });
 
+xdescribe("calculString", function() {
+    it ("checks it is a string", function() {
+        var caS = calculString(0);
+        expect(caS).to.contain('+');
+
+
+    });
+});
+
 xdescribe("getCalcul", function() {
 	it("should return correct result", function() {
-		var gc = getCalcul();
+		var gc = getCalcul(0);
 		expect(gc.calculString).to.be.defined;
 	});
 });
-
-/*xdescribe("verifyCalcul", function() {
-	it("The 'toBeTruthy' matcher is for boolean casting testing", function() => {
-		vc = verifyCalcul();
-		expect(vc).to.be.true;
-	});
-});*/
 
 xdescribe("resultatCalcul", function() {
 	it("checks the result is the same as getCalcul", function() {
