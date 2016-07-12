@@ -4,8 +4,7 @@ function getRandom(min, max) {
 }
 
 //---------------------------------- calculString
-calculString
-function calculString(level) {
+export function calculString(level) {
     var a, b, operateur, opNumber;
 
     if (level===0) {
@@ -85,15 +84,15 @@ function calculString(level) {
 var string = calculString();
 
 //---------------------------------- resultatCalcul
-function resultatCalcul(calcul) {
+export function resultatCalcul(calcul) {
     var resultat = eval(string);
     return resultat;
 }
 
 //---------------------------------- propReponses
-function propReponses(reponse) {
-    var prop1 =getRandom(1, 99);;
-    var prop2 = getRandom(1, 99);;
+export function propReponses(reponse) {
+    var prop1 =getRandom(1, 99);
+    var prop2 = getRandom(1, 99);
     var prop3 = reponse;
 
     var tab = [prop1, prop2, prop3];
@@ -101,13 +100,13 @@ function propReponses(reponse) {
 }
 
 //---------------------------------- time
-function time() {
+export function time() {
     var timer = "5";
     return timer;
 }
 
 //---------------------------------- GET CALCUL
-function getCalcul(level) {
+export function getCalcul(level) {
 
     //Return ----------------------
     var cs = calculString(2);
@@ -125,7 +124,7 @@ console.log(getCalcul());
 
 //---------------------------------- VERIFY CALCUL
 
-function verifyCalcul(resultat, reponse){
+export function verifyCalcul(resultat, reponse){
 
     if (resultat == reponse){
         return true;
