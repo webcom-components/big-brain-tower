@@ -1,11 +1,19 @@
 import { expect } from 'chai';
 import {
-	getCalcul,
-	calculString,
-	resultatCalcul,
-	verifyCalcul,
-	propReponses
+    getCalcul,
+    calculString,
+    resultatCalcul,
+    verifyCalcul,
+    propReponses
 } from '../src/js/states/game/calculLevels';
+
+/*import {
+ question,
+ level
+ lives,
+ playerState,
+ } from '../src/js/states/game/playerState';*/
+
 /* --------------------------------------------------------- LEVEL ZERO */
 describe('calculString', function() {
     it ('level 0 : checks it is a + operator', function() {
@@ -15,10 +23,10 @@ describe('calculString', function() {
 });
 
 describe('getCalcul', function() {
-	it('level 0 : should return correct result', function() {
-		var gc = getCalcul(0);
-		expect(gc.calculString).to.be.defined;
-	});
+    it('level 0 : should return correct result', function() {
+        var gc = getCalcul(0);
+        expect(gc.calculString).to.be.defined;
+    });
     it('level 0 : should return an object with 4 properties', function() {
         var gc = getCalcul(0);
         expect(gc).to.have.property('calculString').that.is.a('string');
@@ -30,21 +38,21 @@ describe('getCalcul', function() {
 });
 
 describe('resultatCalcul', function() {
-	it('level 0 : checks the result is the same as getCalcul', function() {
-		var cs = calculString();
-		var rc = resultatCalcul(cs);
-		expect(eval(cs)).to.be.eql(rc);
-	});
+    it('level 0 : checks the result is the same as getCalcul', function() {
+        var cs = calculString();
+        var rc = resultatCalcul(cs);
+        expect(eval(cs)).to.be.eql(rc);
+    });
 });
 
 describe('propReponses', function() {
-	it('level 0 : should contain resultatCalcul', function() {
+    it('level 0 : should contain resultatCalcul', function() {
         var cs = calculString(0);
         var reponse = eval(calculString(0));
-		var pr = propReponses(reponse);
-        
-		expect(pr).to.contain(eval(reponse));
-	});
+        var pr = propReponses(reponse);
+
+        expect(pr).to.contain(eval(reponse));
+    });
 });
 
 describe('verifyCalcul', function() {
@@ -60,6 +68,10 @@ describe('calculString', function() {
     it ('level 1 : checks it is string', function() {
         var cas = calculString(1);
         expect(cas).to.be.a('string');
+    });
+    it ('level 1 : checks it has + or -', function() {
+        var cas = calculString(1);
+        expect(/^[0-9]\+|\-[0-9]$/.test(cas)).to.be.true;
     });
 });
 
@@ -110,6 +122,10 @@ describe('calculString', function() {
         var cas = calculString(2);
         expect(cas).to.be.a('string');
     });
+    it ('level 2 : checks it has + or - or *', function() {
+        var cas = calculString(1);
+        expect(/^[10-19]\+|\-|\*[10-19]$/.test(cas)).to.be.true;
+    });
 });
 
 describe('getCalcul', function() {
@@ -158,6 +174,10 @@ describe('calculString', function() {
     it ('level 3 : checks it is string', function() {
         var cas = calculString(3);
         expect(cas).to.be.a('string');
+    });
+    it ('level 3 : checks it has + or - or *', function() {
+        var cas = calculString(1);
+        expect(/^[10-19]\+|\-|\*[10-19]$/.test(cas)).to.be.true;
     });
 });
 
@@ -208,6 +228,10 @@ describe('calculString', function() {
         var cas = calculString(5);
         expect(cas).to.be.a('string');
     });
+    it ('level 5 : checks it has + or - or * or /', function() {
+        var cas = calculString(1);
+        expect(/^[10-29]\+|\-|\*|\/[10-29]$/.test(cas)).to.be.true;
+    });
 });
 
 describe('getCalcul', function() {
@@ -256,6 +280,10 @@ describe('calculString', function() {
     it ('level 27 : checks it is string', function() {
         var cas = calculString(27);
         expect(cas).to.be.a('string');
+    });
+    it ('level 5 : checks it has + or - or * or /', function() {
+        var cas = calculString(1);
+        expect(/^[10-29]+\+|\-|\*|\/[10-29]+$/.test(cas)).to.be.true;
     });
 });
 
