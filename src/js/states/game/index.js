@@ -1,19 +1,157 @@
-import { getCalcul } from './getCalcul';
-/*require("../assets/images/tower3.png");
-require("../assets/images/logo.png");
-require("../assets/images/towerFilter1.png");
-require("../assets/images/onelife.png");
-require("../assets/images/nolife.png");
-require("../assets/images/cloud1.png");
-require("../assets/images/cloud2.png");
-require("../assets/images/arrow1.png");
-require("../assets/styles/index.css");
+require("../../../assets/images/tower3.png");
+require("../../../assets/images/logo.png");
+require("../../../assets/images/towerFilter1.png");
+require("../../../assets/images/onelife.png");
+require("../../../assets/images/nolife.png");
+require("../../../assets/images/cloud1.png");
+require("../../../assets/images/cloud2.png");
+require("../../../assets/images/arrow1.png");
+require("../../../assets/styles/index.css");
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-*/
+import {
+	getCalcul
+} from './calculLevels';
+
+
 
 export default class {
-	constructor() {
+	preload() {
+		this.game.load.image('tower', 'assets/images/tower3.png');
+		this.game.load.image('logo', 'assets/images/logo.png');
+		this.game.load.image('towerFilter', 'assets/images/towerFilter1.png');
+		this.game.load.image('onelife', 'assets/images/onelife.png');
+		this.game.load.image('nolife', 'assets/images/nolife.png');
+		this.game.load.image('cloud1', 'assets/images/cloud1.png');
+		this.game.load.image('cloud2', 'assets/images/cloud2.png');
+		this.game.load.image('arrow', 'assets/images/arrow1.png');
+	}
+
+	create() {
+		this.lives;
+		this.background;
+		this.gameplay;
+		this.gui;
+		this.score = 0;
+		this.scoreText;
+		this.scoreString = '';
+		this.cloud;
+		this.timerClouds = 0;
+		this.timer = 0;
+		this.chrono;
+		this.filter;
+		this.level=0;
+		this.levelString = '';
+		this.levelText;
+		this.questionBloc;
+		this.answerBloc;
+		this.cloudSwitch = true;
+		this.timerBloc;
+		this.currentCalcul;
+
+		this.initPause();
+
+		this.game.time.events.duration;
+
+		//  Background ----------------
+
+		this.background = this.game.add.physicsGroup();
+
+		////>sky
+		this.background.stage.backgroundColor = "#4ab4e6";
+		this.background.stage.position = 'absolute';
+
+		////>clouds
+		this.cloud = this.background.game.add.physicsGroup();
+
+		for (var i= 0; i<5; i++){
+			var y =  this.game.rnd.between(0,800);
+			var x =  this.game.rnd.between(0,600);
+			var cloud1 = this.cloud.create(x, y, i%2 === 0 ? 'cloud1' :'cloud2');
+			cloud1.body.velocity.x = this.game.rnd.between(2, 10);
+		}
+		// --------------------
+
+		//  Gameplay ----------------
+
+
+		this.gameplay = this.game.add.physicsGroup();
+
+		////>tower
+		var tower= this.gameplay.game.add.sprite(0, 0, 'tower');
+		tower.tint = 0xFF99CC;
+
+		////>logo
+		this.gameplay.game.add.sprite(680, 0, 'logo');
+
+		var elements = $(`
+			<div id="blocQuizz">
+			 <div id="quizz">
+			  <div class="wrapper">
+					 <div class="questionBloc"></div>
+					<div class="timerBloc"></div>
+			  </div>
+			  <div class="answerBloc">
+					<div class="bloc1"></div>
+					<div class="bloc2"></div>
+					<div class="bloc3"></div>
+			  </div>
+			 </div>
+			 </div>			  
+		`).appendTo('body');
+
+		this.initNewCalcul();
+
+		/////>timer
+		this.timerBloc = document.getElementsByClassName("timerBloc");
+		this.timerBloc.tint = 0xFF99CC;
+
+		////>answer
+		this.answerBloc = document.getElementsByClassName("answerBloc");
+
+
+		//currentCalcul.responseArray[]
+
+		// --------------------
+
+		//  Gui ----------------
+
+		this.gui = this.game.add.physicsGroup();
+
+		////>lives
+		this.lives = this.game.add.group();
+		this.gui.game.add.sprite(500, 4, 'nolife');
+		this.gui.game.add.sprite(450, 4, 'onelife');
+		var life= this.gui.game.add.sprite(400, 4, 'onelife');
+
+		////>score
+		this.scoreString = 'score : ';
+		this.scoreText = this.gui.game.add.text(130, 4, this.scoreString + this.score, { font: '26px Helvetica Neue', fill: '#fff' });
+
+		////>filter tour
+		this.gui.game.add.sprite(0, 438, 'towerFilter');
+
+		////>arrow
+		this.level = this.game.add.physicsGroup();
+		this.level.game.add.sprite(100, 424, 'arrow');
+		this.levelString = 'floor2';
+		this.levelText = this.gui.game.add.text(145, 435, this.levelString, { font: '18px Helvetica Neue', fill: '#fff' });
+	}
+
+	initNewCalcul() {
+		this.currentCalcul = getCalcul(this.level);
+
+		/////>question
+		this.questionBloc = document.getElementsByClassName("questionBloc")[0];
+		this.questionBloc.innerHTML = this.currentCalcul.calculString;
+
+		////>blocs
+		var bloc1 = document.getElementsByClassName("bloc1")[0];
+		var bloc2 = document.getElementsByClassName("bloc2")[0];
+		var bloc3 = document.getElementsByClassName("bloc3")[0];
+
+		bloc1.innerHTML = this.currentCalcul.responseArray[0];
+		bloc2.innerHTML = this.currentCalcul.responseArray[1];
+		bloc3.innerHTML = this.currentCalcul.responseArray[2];
 	}
 
 	displayPause() {
@@ -46,173 +184,4 @@ export default class {
 			}
 		};
 	}
-
-/*	// ------------------------- PRELOAD --------------------------- //
-
-	function preload() {
-
-		game.load.image('tower', 'assets/images/tower3.png');
-		game.load.image('logo', 'assets/images/logo.png');
-		game.load.image('towerFilter', 'assets/images/towerFilter1.png');
-		game.load.image('onelife', 'assets/images/onelife.png');
-		game.load.image('nolife', 'assets/images/nolife.png');
-		game.load.image('cloud1', 'assets/images/cloud1.png');
-		game.load.image('cloud2', 'assets/images/cloud2.png');
-		game.load.image('arrow', 'assets/images/arrow1.png');
-	}
-
-////>variables
-
-	var lives;
-	var background;
-	var gameplay;
-	var gui;
-	var score = 0;
-	var scoreText;
-	var scoreString = '';
-	var cloud;
-	var timerClouds = 0;
-	var timer = 0;
-	var chrono;
-	var filter;
-	var level;
-	var levelString = '';
-	var levelText;
-	var questionBloc;
-	var answerBloc;
-	var cloudSwitch = true;
-	var timerBloc;
-
-	// ------------------------- CREATE --------------------------- //
-*/
-
-	create() {
-		this.initPause();
-		
-		/*game.time.events.duration;
-
-		//  Background ----------------
-
-		background = game.add.physicsGroup();
-
-		////>sky
-		background.stage.backgroundColor = "#4ab4e6";
-		background.stage.position = 'absolute';
-
-		////>clouds
-		cloud = background.game.add.physicsGroup();
-
-		for (var i= 0; i<5; i++){
-			var y =  game.rnd.between(0,800);
-			var x =  game.rnd.between(0,600);
-			var cloud1 = cloud.create(x, y, i%2 === 0 ? 'cloud1' :'cloud2');
-			cloud1.body.velocity.x = game.rnd.between(2, 10);
-		}
-
-		//  Gameplay ----------------
-
-		gameplay = game.add.physicsGroup();
-
-		////>tower
-		var tower= gameplay.game.add.sprite(0, 0, 'tower');
-		tower.tint = 0xFF99CC;
-
-		////>logo
-		gameplay.game.add.sprite(680, 0, 'logo');
-
-		var elements = $(`
-<div id="blocQuizz">
- <div id="quizz">
-  <div class="wrapper">
-         <div class="questionBloc">6 x 5 + 7</div>
-        <div class="timerBloc"></div>
-  </div>
-  <div class="answerBloc">
-        <div class="bloc1">42</div>
-        <div class="bloc2">47</div>
-        <div class="bloc3">37</div>
-  </div>
- </div>
- </div>
-  
-`).appendTo('body');
-
-		/////>question
-		questionBloc = document.getElementsByClassName("questionBloc");
-
-		/////>timer
-		timerBloc = document.getElementsByClassName("timerBloc");
-		timerBloc.tint = 0xFF99CC;
-
-		////>answer
-		answerBloc = document.getElementsByClassName("answerBloc");
-
-		////>blocs
-		var bloc1 = document.getElementsByClassName("bloc1");
-
-		var bloc2 = document.getElementsByClassName("bloc2");
-
-		var bloc3 = document.getElementsByClassName("bloc3");
-
-		//  Gui ----------------
-
-		gui = game.add.physicsGroup();
-
-		////>lives
-		lives = game.add.group();
-		gui.game.add.sprite(500, 4, 'nolife');
-		gui.game.add.sprite(450, 4, 'onelife');
-		var life= gui.game.add.sprite(400, 4, 'onelife');
-
-		////>score
-		scoreString = 'score : ';
-		scoreText = gui.game.add.text(130, 4, scoreString + score, { font: '26px Helvetica Neue', fill: '#fff' });
-
-		////>filter tour
-		gui.game.add.sprite(0, 438, 'towerFilter');
-
-		////>arrow
-		level = game.add.physicsGroup();
-		level.game.add.sprite(100, 424, 'arrow');
-		levelString = 'floor2';
-		levelText = gui.game.add.text(145, 435, levelString, { font: '18px Helvetica Neue', fill: '#fff' });
-		*/
-
-	}
-
-	// ------------------------- UPDATE --------------------------- //
-
-	update() {
-		/*createCloud();
-		cloud.forEach(checkPos, this);
-	}
-
-	function createCloud() {
-		if (game.time.time > timerClouds){
-			var y =  game.rnd.between(-50,600);
-			var c = cloud.create(-100, y, cloudSwitch ? 'cloud1' :'cloud2');
-			c.body.velocity.x = game.rnd.between(2, 10);
-			timerClouds = game.time.time + 20000;
-			cloudSwitch = !cloudSwitch;
-
-		}
-		*/
-	}
-/*// checkPos
-	function checkPos (cloud) {
-		if (cloud.y > 900) {
-			cloud.kill();
-		}
-	}
-	shutdown() {
-		this.hidePause();
-	}
-	*/
 }
-
-// ------------------------- RENDER --------------------------- //
-
-/*function render () {
-	chrono = gui.game.time.events.duration;
-}
-*/

@@ -1,6 +1,17 @@
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+}
+
 //---------------------------------- getRandom
 function getRandom(min, max) {
-    return Math.floor((Math.random() * max) + min);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 //---------------------------------- calculString
@@ -59,8 +70,8 @@ export function calculString(level) {
     }
 
     else if (level >= 10) {
-        a = Math.floor((Math.random() * 19 * level) + 10 * level);
-        b = Math.floor((Math.random() * 19 * level) + 10 * level);
+        a = getRandom(10 * level, 19 * level);
+        b = getRandom(10 * level, 19 * level);
         opNumber = getRandom(1,4);
         if (opNumber === 1) {
             operateur = '+';
@@ -96,6 +107,7 @@ export function propReponses(reponse) {
     var prop3 = reponse;
 
     var tab = [prop1, prop2, prop3];
+    shuffle(tab);
     return tab;
 }
 
@@ -109,7 +121,7 @@ export function time() {
 export function getCalcul(level) {
 
     //Return ----------------------
-    var cs = calculString(2);
+    var cs = calculString(level);
     var chrono = time();
     return{
         calculString: cs,

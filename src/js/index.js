@@ -12,4 +12,4 @@ game.state.add('Menu', MenuState);
 game.state.add('Game', GameState);
 game.state.add('Score', ScoresState);
 
-game.state.start('Login');
+game.state.start('Game');
