@@ -5,6 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
+    "test:debug": "webpack-dev-server --config ./webpack.config-test.js --hot --inline",
     "test:watch": "npm run test -- -w",
     "start": "webpack-dev-server --hot --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --colors -p",
@@ -37,6 +38,8 @@
     "ghooks": "^1.2.4",
     "html-webpack-plugin": "^2.21.0",
     "mocha": "^2.5.3",
+    "mocha-loader": "^0.7.1",
+    "mocha-webpack": "^0.5.0",
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
     "validate-commit-msg": "^2.6.1",

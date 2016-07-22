@@ -24,6 +24,26 @@ npm start
 
 Go to `http://localhost:8080` and you should see the app running!
 
+## Test the app
+
+Launch tests in console
+
+```bash
+npm test
+```
+
+Launch tests in console with file watching
+
+```bash
+npm run test:watch
+```
+
+Launch tests into browser for debugging purposes
+
+```bash
+npm run test:debug
+```
+
 ## [Trello](https://trello.com/b/dClcMFGi/big-brain-tower)
 
 ## License
