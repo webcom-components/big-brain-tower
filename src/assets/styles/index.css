@@ -145,6 +145,13 @@ body{
 
 }
 
+.bloc1:hover, .bloc2:hover, .bloc3:hover {
+	transform: scale(1.05);
+}
+.bloc1:active, .bloc2:active, .bloc3:active {
+	transform: scale(1.03);
+}
+
 @media all and (min-width: 400px) {
 	.answerBloc    { flex: 3 0px; }
 	.bloc1 {

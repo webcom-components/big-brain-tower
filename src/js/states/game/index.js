@@ -12,6 +12,10 @@ import {
 	getCalcul
 } from './calculLevels';
 
+import {
+	verifyCalcul
+} from './calculLevels';
+
 
 
 export default class {
@@ -47,6 +51,12 @@ export default class {
 		this.cloudSwitch = true;
 		this.timerBloc;
 		this.currentCalcul;
+		this.checkResponse;
+		this.iteration = 0;
+		this.nbreLife = 3;
+		this.floor = 0;
+		this.question;
+		this.questionText='';
 
 		this.initPause();
 
@@ -119,26 +129,29 @@ export default class {
 
 		////>lives
 		this.lives = this.game.add.group();
-		this.gui.game.add.sprite(500, 4, 'nolife');
-		this.gui.game.add.sprite(450, 4, 'onelife');
-		var life= this.gui.game.add.sprite(400, 4, 'onelife');
+		this.livesCount();
 
 		////>score
 		this.scoreString = 'score : ';
 		this.scoreText = this.gui.game.add.text(130, 4, this.scoreString + this.score, { font: '26px Helvetica Neue', fill: '#fff' });
 
+		////>iteration / question
+		this.question ='iteration: ' + this.iteration;
+		this.questionText = this.gui.game.add.text(130, 40, this.question, { font: '16px Helvetica Neue', fill: 'grey' });
+
 		////>filter tour
 		this.gui.game.add.sprite(0, 438, 'towerFilter');
 
-		////>arrow
+		////>arrow (floor)
 		this.level = this.game.add.physicsGroup();
-		this.level.game.add.sprite(100, 424, 'arrow');
-		this.levelString = 'floor2';
+		this.level.game.add.sprite(110, 424, 'arrow');
+		this.levelString = 'floor '+ this.iteration;
 		this.levelText = this.gui.game.add.text(145, 435, this.levelString, { font: '18px Helvetica Neue', fill: '#fff' });
 	}
 
 	initNewCalcul() {
 		this.currentCalcul = getCalcul(this.level);
+		this.checkResponse = verifyCalcul();
 
 		/////>question
 		this.questionBloc = document.getElementsByClassName("questionBloc")[0];
@@ -152,6 +165,56 @@ export default class {
 		bloc1.innerHTML = this.currentCalcul.responseArray[0];
 		bloc2.innerHTML = this.currentCalcul.responseArray[1];
 		bloc3.innerHTML = this.currentCalcul.responseArray[2];
+	}
+
+	checkAnswer(){
+		bloc1.addEventListener("click",  this.checkResponse);
+		bloc2.addEventListener("click",  this.checkResponse);
+		bloc3.addEventListener("click",  this.checkResponse);
+
+		if (this.checkResponse === true){
+			this.iteration ++;
+			this.score + (22 * level);
+		}
+		else {
+			this.nbreLife --;
+		}
+		initNewCalcul();
+	}
+
+	floorUp(){
+		if(this.iteration = 10){
+			this.iteration = 0;
+			this.floor ++;
+			this.score + (44 * level);
+		}
+		return this.iteration;
+	}
+
+	livesCount(){
+		var life1, life2, life3;
+
+		if(this.nbreLife = 3){
+			life1 = this.gui.game.add.sprite(400, 4, 'onelife');
+			life2 = this.gui.game.add.sprite(450, 4, 'onelife');
+			life3 = this.gui.game.add.sprite(500, 4, 'onelife');
+		}
+		else if(this.nbreLife = 2){
+			life1 = this.gui.game.add.sprite(400, 4, 'nolife');
+			life2 = this.gui.game.add.sprite(450, 4, 'onelife');
+			life3 = this.gui.game.add.sprite(500, 4, 'onelife');
+		}
+		else if(this.nbreLife = 1){
+			life1 = this.gui.game.add.sprite(400, 4, 'nolife');
+			life2 = this.gui.game.add.sprite(450, 4, 'nolife');
+			life3 = this.gui.game.add.sprite(500, 4, 'onelife');
+		}
+		else if(this.nbreLife = 0){
+			life1 = this.gui.game.add.sprite(400, 4, 'nolife');
+			life2 = this.gui.game.add.sprite(450, 4, 'nolife');
+			life3 = this.gui.game.add.sprite(500, 4, 'nolife');
+			game.state.start('Score');
+		}
 	}
 
 	displayPause() {
