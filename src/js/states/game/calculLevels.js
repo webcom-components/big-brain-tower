@@ -37,8 +37,8 @@ export function calculString(level) {
     }
 
     else if (level===2) {
-        a = getRandom(10, 19);
-        b = getRandom(10, 19);
+        a = getRandom(1, 19);
+        b = getRandom(1, 19);
         opNumber = getRandom(1,3);
         if (opNumber === 1) {
             operateur = '+';
@@ -70,8 +70,8 @@ export function calculString(level) {
     }
 
     else if (level >= 10) {
-        a = getRandom(10 * level, 19 * level);
-        b = getRandom(10 * level, 19 * level);
+        a = getRandom(1 * level, 19 * level);
+        b = getRandom(1 * level, 19 * level);
         opNumber = getRandom(1,4);
         if (opNumber === 1) {
             operateur = '+';
@@ -132,7 +132,7 @@ export function getCalcul(level) {
 }
 
 //Console.log ----------------------
-console.log(getCalcul());
+//console.log(getCalcul());
 
 //---------------------------------- VERIFY CALCUL
 

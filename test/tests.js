@@ -179,6 +179,10 @@ describe('level 4 to 9', function() {
         it ('level 5 : checks it has + or - or * or /', function() {
             var cas = calculString(5);
             expect(cas).match(/^[12][0-9][\+\-\*\/][12][0-9]$/);
+
+
+
+            
         });
     });
 
