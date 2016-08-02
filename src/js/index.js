@@ -12,4 +12,4 @@ game.state.add('Menu', MenuState);
 game.state.add('Game', GameState);
 game.state.add('Score', ScoresState);
 
-game.state.start('Game'); //<<<<<<<<<<<<<<<<<<<<<<<<<<<< changer pour Login quand tout fini!!!
+game.state.start('Login');

@@ -123,7 +123,7 @@ describe('level 2', function() {
         });
         it('level 2 : checks it has + or - or *', function () {
             var cas = calculString(2);
-            expect(cas).match(/^[1][0-9][\+\-\*][1][0-9]$/);
+            expect(cas).match(/^[0-9]\+|\-|\*[0-9]$/);
         });
     });
 
@@ -178,7 +178,7 @@ describe('level 4 to 9', function() {
         });
         it ('level 5 : checks it has + or - or * or /', function() {
             var cas = calculString(5);
-            expect(cas).match(/^[12][0-9][\+\-\*\/][12][0-9]$/);
+            expect(cas).match(/^[1-9]|1[0-9]\+|\-|\*\/[1-9]|1[0-9]$/);
         });
     });
 
@@ -231,9 +231,9 @@ describe('level >= 10', function() {
             var cas = calculString(27);
             expect(cas).to.be.a('string');
         });
-        it ('level 5 : checks it has + or - or * or /', function() {
+        it ('level 27 : checks it has + or - or * or /', function() {
             var cas = calculString(27);
-            expect(cas).match(/^[0-9]{3,}[\+\-\*\/][0-9]{3,}$/);
+            expect(cas).match(/^[1-9]|1[0-9]{3,}\+|\-|\*\/[1-9]|1[0-9]{3,}$/); //(/^[1-9]|1[0-9]{3,}\+|\-|\*\/[1-9]|1[0-9]{3,}$/)
         });
     });
 

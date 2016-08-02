@@ -37,8 +37,8 @@ export function calculString(level) {
     }
 
     else if (level===2) {
-        a = getRandom(10, 19);
-        b = getRandom(10, 19);
+        a = getRandom(1, 9);
+        b = getRandom(1, 9);
         opNumber = getRandom(1,3);
         if (opNumber === 1) {
             operateur = '+';
@@ -52,8 +52,8 @@ export function calculString(level) {
     }
 
     else if (level >=3 && level <= 9) {
-        a = getRandom(10, 29);
-        b = getRandom(10, 29);
+        a = getRandom(1, 19);
+        b = getRandom(1, 19);
         opNumber = getRandom(1,4);
         if (opNumber === 1) {
             operateur = '+';
@@ -70,8 +70,8 @@ export function calculString(level) {
     }
 
     else if (level >= 10) {
-        a = getRandom(10 * level, 19 * level);
-        b = getRandom(10 * level, 19 * level);
+        a = getRandom(1 + level, 19 + level);
+        b = getRandom(1 + level, 19 + level);
         opNumber = getRandom(1,4);
         if (opNumber === 1) {
             operateur = '+';
@@ -102,8 +102,8 @@ export function resultatCalcul(calcul) {
 
 //---------------------------------- propReponses
 export function propReponses(reponse) {
-    var prop1 =getRandom(1, 99);
-    var prop2 = getRandom(1, 99);
+    var prop1 = (reponse + getRandom(1, 9));
+    var prop2 = (reponse - getRandom(1, 9));
     var prop3 = reponse;
 
     var tab = [prop1, prop2, prop3];

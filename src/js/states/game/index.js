@@ -10,7 +10,6 @@ require("../../../assets/styles/index.css");
 
 import {
     getCalcul,
-    verifyCalcul
 } from './calculLevels';
 
 export default class {
@@ -42,6 +41,7 @@ export default class {
         this.level=0;
         this.levelString = '';
         this.levelText;
+        this.levelNumber='';
         this.questionBloc;
         this.answerBloc;
         this.cloudSwitch = true;
@@ -141,8 +141,10 @@ export default class {
         this.floorSprite = this.game.add.physicsGroup();
         this.floorSprite.game.add.sprite(110, 424, 'arrow');
 
-        this.levelString = 'floor '+ this.level;
+        this.levelString = 'floor ';
         this.levelText = this.gui.game.add.text(145, 435, this.levelString, { font: '18px Helvetica Neue', fill: '#fff' });
+        this.levelNumber ='';
+        this.levelNumber = this.gui.game.add.text(185, 435, this.level, { font: '18px Helvetica Neue', fill: '#fff' });
 
         this.bloc1 = document.getElementsByClassName("bloc1")[0];
         this.bloc2 = document.getElementsByClassName("bloc2")[0];
@@ -192,8 +194,9 @@ export default class {
         if(this.iteration === 10){
             this.iteration = 0;
             this.level ++;
-            this.levelText.setText(this.levelString + this.level);
-            this.level = this.level + (44 * (this.level+1));
+            this.levelText.setText(this.levelString);
+            this.levelNumber.setText(this.level);
+            this.score = this.score + (44 * (this.level+1));
         }
     }
 
