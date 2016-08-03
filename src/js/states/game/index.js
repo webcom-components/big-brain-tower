@@ -157,6 +157,14 @@ export default class {
         this.initNewCalcul();
     }
 
+    decimal(){
+        var n = this.currentCalcul.responseArray;
+        if(n%1 === 0){
+            n = Math.floor10(n);
+        }
+        return n;
+    }
+
     initNewCalcul() {
         this.currentCalcul = getCalcul(this.level);
 
@@ -168,6 +176,8 @@ export default class {
         this.bloc1.innerHTML = this.currentCalcul.responseArray[0];
         this.bloc2.innerHTML = this.currentCalcul.responseArray[1];
         this.bloc3.innerHTML = this.currentCalcul.responseArray[2];
+
+        this.decimal();
     }
 
     clickResponse(e){
