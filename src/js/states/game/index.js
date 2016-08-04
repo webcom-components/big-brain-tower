@@ -157,13 +157,13 @@ export default class {
         this.initNewCalcul();
     }
 
-    decimal(){
+    /*decimal(){
         var n = this.currentCalcul.responseArray;
-        if(n%1 === 0){
-            n = Math.floor10(n);
+        if(n%1 !== 0){
+            var d = Math.floor(n);
         }
-        return n;
-    }
+        return d;
+    }*/
 
     initNewCalcul() {
         this.currentCalcul = getCalcul(this.level);
@@ -174,10 +174,22 @@ export default class {
 
         ////>blocs
         this.bloc1.innerHTML = this.currentCalcul.responseArray[0];
-        this.bloc2.innerHTML = this.currentCalcul.responseArray[1];
-        this.bloc3.innerHTML = this.currentCalcul.responseArray[2];
+        var a = this.currentCalcul.responseArray[0];
+        if (a % 1 !== 0) {
+            this.bloc1.innerHTML = this.currentCalcul.responseArray[0].toFixed(2);
+        }
 
-        this.decimal();
+        this.bloc2.innerHTML = this.currentCalcul.responseArray[1];
+        var b = this.currentCalcul.responseArray[1];
+        if (b % 1 !== 0) {
+            this.bloc2.innerHTML = this.currentCalcul.responseArray[1].toFixed(2);
+        }
+
+        this.bloc3.innerHTML = this.currentCalcul.responseArray[2];
+        var c = this.currentCalcul.responseArray[2];
+        if (c % 1 !== 0) {
+            this.bloc3.innerHTML = this.currentCalcul.responseArray[2].toFixed(2);
+        }
     }
 
     clickResponse(e){
@@ -186,7 +198,7 @@ export default class {
     }
 
     checkAnswer(r){
-        if (r === this.currentCalcul.responseNumber){
+        if (r === this.currentCalcul.responseNumber || r === this.currentCalcul.responseNumber.toFixed(2) ){
             this.iteration ++;
             this.iterationText.setText(this.iterationString + this.iteration);
             this.score = this.score + (22 * (this.level+1));
