@@ -51,6 +51,9 @@ export default class {
 
 		this.overlay = $(`<div class="overlay content-center">
 			<div style="color:#FFF; width:50%">
+			
+			<h1>Ton score : </h1>
+			
 				<h1>Meilleurs joueurs</h1>
 				<table style="width:100%">
 					<tr>

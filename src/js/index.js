@@ -11,5 +11,6 @@ game.state.add('Login', LoginState);
 game.state.add('Menu', MenuState);
 game.state.add('Game', GameState);
 game.state.add('Score', ScoresState);
+game.state.add('Game Over', GameoverState);
 
 game.state.start('Login');

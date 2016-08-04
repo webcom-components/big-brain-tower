@@ -245,7 +245,7 @@ export default class {
             life2 = this.gui.game.add.sprite(450, 4, 'nolife');
             life3 = this.gui.game.add.sprite(500, 4, 'nolife');
 
-            this.game.state.start('Score');
+            this.game.state.start('Game Over');
         }
     }
 
