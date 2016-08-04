@@ -4,6 +4,7 @@ import LoginState from './states/login';
 import MenuState from './states/menu';
 import GameState from './states/game';
 import ScoresState from './states/score';
+import GameoverState from './states/gameover';
 
 var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'game');
 
