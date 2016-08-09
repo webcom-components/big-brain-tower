@@ -52,7 +52,7 @@ export default class {
         this.overlay = $(`<div class="overlay content-center">
 			<div style="color:#FFF; width:50%">
 			
-			<h1>Ton score : </h1>
+			<h1>Ton score : ${window.score}</h1>
 			
 				<h1>Game Over</h1>
 				<table style="width:100%">
@@ -64,6 +64,8 @@ export default class {
 		</div>`);
 
         this.overlay.appendTo(document.body);
+
+//        this.gui.game.add.text(145, 435, window.score, { font: '18px Helvetica Neue', fill: '#fff' });
 
         this.game.input.keyboard.onDownCallback = function() {
             this.game.state.start("Menu");

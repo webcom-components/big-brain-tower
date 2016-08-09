@@ -49,7 +49,7 @@ export default class {
         this.currentCalcul;
         this.checkResponse;
         this.iteration = 0;
-        this.iterationString = 'iteration : ';
+        this.iterationString = 'Question n° : ';
         this.iterationText;
         this.nbreLife = 3;
         this.question;
@@ -157,14 +157,6 @@ export default class {
         this.initNewCalcul();
     }
 
-    /*decimal(){
-        var n = this.currentCalcul.responseArray;
-        if(n%1 !== 0){
-            var d = Math.floor(n);
-        }
-        return d;
-    }*/
-
     initNewCalcul() {
         this.currentCalcul = getCalcul(this.level);
 
@@ -245,6 +237,7 @@ export default class {
             life2 = this.gui.game.add.sprite(450, 4, 'nolife');
             life3 = this.gui.game.add.sprite(500, 4, 'nolife');
 
+            window.score = this.score;
             this.game.state.start('Game Over');
         }
     }
