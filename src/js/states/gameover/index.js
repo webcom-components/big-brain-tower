@@ -52,15 +52,13 @@ export default class {
         this.overlay = $(`<div class="overlay content-center">
 			<div style="color:#FFF; width:50%">			
 				<h1>Game Over</h1>
-                <p style="padding-bottom: 1em;">Ton score : ${window.score}</p>
-                <p style="padding-bottom: 1em;">Ton meilleur score :
-                    <span id="bestScore">0</span>
-                </p>
+                <p style="padding-bottom: 1em;">Your score is ${window.score}</p>
+                <p style="padding-bottom: 1em;">Your best score is <span id="bestScore">0</span></p>
 
 				<table style="width:100%">
-					<tr>
-						<td>Press any key to try again</td>
-					</tr>
+                    <form class="menu">
+                        <input type="submit" value="play again" style="display:block; width: 100%"/>
+                    </form>
 				</table>
 			</div>
 		</div>`)
