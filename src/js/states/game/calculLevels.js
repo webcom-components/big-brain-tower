@@ -112,9 +112,8 @@ export function propReponses(reponse) {
 }
 
 //---------------------------------- time
-export function time() {
-    var timer = "5";
-    return timer;
+export function getTime(level) {
+    return 5;
 }
 
 //---------------------------------- GET CALCUL
@@ -122,17 +121,13 @@ export function getCalcul(level) {
 
     //Return ----------------------
     var cs = calculString(level);
-    var chrono = time();
     return{
         calculString: cs,
         responseNumber: eval(cs),
         responseArray: propReponses(eval(cs)),
-        timer: chrono
+        timer: getTime(level)
     };
 }
-
-//Console.log ----------------------
-//console.log(getCalcul());
 
 //---------------------------------- VERIFY CALCUL
 

@@ -27,7 +27,7 @@ describe('level 0', function() {
             expect(gc).to.have.property('calculString').that.is.a('string');
             expect(gc).to.have.property('responseNumber').that.is.a('number');
             expect(gc).to.have.property('responseArray').that.is.a('array');
-            expect(gc).to.have.property('timer').that.is.a('string');
+            expect(gc).to.have.property('timer').that.is.a('number');
 
         });
     });
@@ -82,7 +82,7 @@ describe('level 1', function() {
             expect(gc).to.have.property('calculString').that.is.a('string');
             expect(gc).to.have.property('responseNumber').that.is.a('number');
             expect(gc).to.have.property('responseArray').that.is.a('array');
-            expect(gc).to.have.property('timer').that.is.a('string');
+            expect(gc).to.have.property('timer').that.is.a('number');
 
         });
     });
@@ -137,7 +137,7 @@ describe('level 2', function() {
             expect(gc).to.have.property('calculString').that.is.a('string');
             expect(gc).to.have.property('responseNumber').that.is.a('number');
             expect(gc).to.have.property('responseArray').that.is.a('array');
-            expect(gc).to.have.property('timer').that.is.a('string');
+            expect(gc).to.have.property('timer').that.is.a('number');
 
         });
     });
@@ -192,7 +192,7 @@ describe('level 4 to 9', function() {
             expect(gc).to.have.property('calculString').that.is.a('string');
             expect(gc).to.have.property('responseNumber').that.is.a('number');
             expect(gc).to.have.property('responseArray').that.is.a('array');
-            expect(gc).to.have.property('timer').that.is.a('string');
+            expect(gc).to.have.property('timer').that.is.a('number');
 
         });
     });
@@ -247,7 +247,7 @@ describe('level >= 10', function() {
             expect(gc).to.have.property('calculString').that.is.a('string');
             expect(gc).to.have.property('responseNumber').that.is.a('number');
             expect(gc).to.have.property('responseArray').that.is.a('array');
-            expect(gc).to.have.property('timer').that.is.a('string');
+            expect(gc).to.have.property('timer').that.is.a('number');
 
         });
     });

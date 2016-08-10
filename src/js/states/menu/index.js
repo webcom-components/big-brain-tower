@@ -51,8 +51,7 @@ export default class {
 
 		this.overlay = $(`<div class="overlay content-center">
 			<form class="menu">
-				<h2>main menu</h2>
-				<input type="submit" value="play" style="display:block; width: 100%"/>
+				<input type="submit" value="play" style="display:block; width: 100%; padding: 10px 3em"/>
 			</form>
 		</div>`)
 		.on('click', 'input[type=submit]', function(e) {
