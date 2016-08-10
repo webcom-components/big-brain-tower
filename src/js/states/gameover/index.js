@@ -52,16 +52,22 @@ export default class {
         this.overlay = $(`<div class="overlay content-center">
 			<div style="color:#FFF; width:50%">
 			
-			<h1>Ton score : ${window.score}</h1>
+			<h1>game over</h1>
 			
-				<h1>Game Over</h1>
+			<h1>your score is  ${window.score}</h1>
+			
 				<table style="width:100%">
-					<tr>
-						<td>Press F5 to try again</td>
-					</tr>
+					<form class="menu">
+
+				<input type="submit" value="play again" style="display:block; width: 100%"/>
+			</form>
 				</table>
 			</div>
-		</div>`);
+		</div>`)
+            .on('click', 'input[type=submit]', function(e) {
+            e.preventDefault();
+            game.state.start('Game')
+        });
 
         this.overlay.appendTo(document.body);
 

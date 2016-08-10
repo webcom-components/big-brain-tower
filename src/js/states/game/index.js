@@ -49,7 +49,7 @@ export default class {
         this.currentCalcul;
         this.checkResponse;
         this.iteration = 0;
-        this.iterationString = 'Question n° : ';
+        this.iterationString = 'good answers : ';
         this.iterationText;
         this.nbreLife = 3;
         this.question;
@@ -132,7 +132,7 @@ export default class {
         this.scoreText = this.gui.game.add.text(130, 4, this.scoreString + this.score, { font: '26px Helvetica Neue', fill: '#fff' });
 
         ////>iteration / question
-        this.iterationText = this.gui.game.add.text(130, 40, this.iterationString + this.iteration, { font: '16px Helvetica Neue', fill: 'grey' });
+        this.iterationText = this.gui.game.add.text(130, 40, this.iterationString + this.iteration + " / 10", { font: '16px Helvetica Neue', fill: 'grey' });
 
         ////>filter tour
         this.gui.game.add.sprite(0, 438, 'towerFilter');
@@ -141,7 +141,7 @@ export default class {
         this.floorSprite = this.game.add.physicsGroup();
         this.floorSprite.game.add.sprite(110, 424, 'arrow');
 
-        this.levelString = 'floor ';
+        this.levelString = 'level ';
         this.levelText = this.gui.game.add.text(145, 435, this.levelString, { font: '18px Helvetica Neue', fill: '#fff' });
         this.levelNumber ='';
         this.levelNumber = this.gui.game.add.text(185, 435, this.level, { font: '18px Helvetica Neue', fill: '#fff' });
@@ -192,7 +192,7 @@ export default class {
     checkAnswer(r){
         if (r === this.currentCalcul.responseNumber || r === this.currentCalcul.responseNumber.toFixed(2) ){
             this.iteration ++;
-            this.iterationText.setText(this.iterationString + this.iteration);
+            this.iterationText.setText(this.iterationString + this.iteration + " / 10");
             this.score = this.score + (22 * (this.level+1));
             this.scoreText.setText(this.scoreString + this.score);
             this.floorUp();
