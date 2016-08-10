@@ -50,17 +50,17 @@ export default class {
         const game = this.game;
 
         this.overlay = $(`<div class="overlay content-center">
-			<div style="color:#FFF; width:50%">
-			
-			<h1>game over</h1>
-			
-			<h1>your score is  ${window.score}</h1>
-			
-				<table style="width:100%">
-					<form class="menu">
+			<div style="color:#FFF; width:50%">			
+				<h1>Game Over</h1>
+                <p style="padding-bottom: 1em;">Ton score : ${window.score}</p>
+                <p style="padding-bottom: 1em;">Ton meilleur score :
+                    <span id="bestScore">0</span>
+                </p>
 
-				<input type="submit" value="play again" style="display:block; width: 100%"/>
-			</form>
+				<table style="width:100%">
+					<tr>
+						<td>Press any key to try again</td>
+					</tr>
 				</table>
 			</div>
 		</div>`)
@@ -70,16 +70,47 @@ export default class {
         });
 
         this.overlay.appendTo(document.body);
+       
+        this.game.input.keyboard.addCallbacks(this, e => {
+            this.game.input.keyboard.destroy();
+            this.game.input.keyboard.start();
+            this.game.state.start("Game");
+        });
 
-//        this.gui.game.add.text(145, 435, window.score, { font: '18px Helvetica Neue', fill: '#fff' });
+        const login = localStorage.getItem('login');
+        this.displayBestScore(login);
+        this.saveBestScore(login, window.score);
+    }
 
-        this.game.input.keyboard.onDownCallback = function() {
-            this.game.state.start("Menu");
-        };
-        /*
-         $('body').keypress(function() {
-         }, this);
-         */
+    displayBestScore(login) {
+        const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
+        ref.on('value', snap => {
+            document.getElementById('bestScore').innerHTML = snap.val().score || 0;
+        }); 
+    }
+
+    getBestScore(login) {
+        return new Promise(resolve => {
+            const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
+            ref.once('value', snap => {
+                resolve(snap.val().score || 0);
+            }); 
+        })
+    }
+
+    saveBestScore(login, score) {
+        return this.getBestScore(login).then(bestScore => {
+            return new Promise(resolve => {
+                bestScore = Number(bestScore);
+                if (score > bestScore) {
+                    const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
+                    ref.update({
+                        score
+                    }, () => resolve);
+                }
+                resolve();
+            });            
+        })
     }
 
     update() {

@@ -100,7 +100,9 @@ export default class {
 			 <div id="quizz">
 			  <div class="wrapper">
 					 <div class="questionBloc"></div>
-					<div class="timerBloc"></div>
+					<div class="timerBloc">
+                        <div class="timeElapsed"></div>
+                    </div>
 			  </div>
 			  <div class="answerBloc">
 					<div class="bloc1"></div>
@@ -157,6 +159,23 @@ export default class {
         this.initNewCalcul();
     }
 
+    getCurrentTime() {
+        return new Date().getTime() / 1000;
+    }
+
+    initTimerBar() {
+        this.startTime = this.getCurrentTime();
+        this.timeElapsedBloc = document.getElementsByClassName("timeElapsed")[0];
+        clearInterval(this.TimerBarHandler);
+        this.TimerBarHandler = setInterval(() => {
+            const width = ((this.getCurrentTime() - this.startTime) / this.currentCalcul.timer) * 100;
+            if (width >= 100) {
+                this.checkAnswer();
+            }
+            this.timeElapsedBloc.style.width = `${width >= 100 ? 100: width}%`;
+        }, 30);
+    }
+
     initNewCalcul() {
         this.currentCalcul = getCalcul(this.level);
 
@@ -182,6 +201,9 @@ export default class {
         if (c % 1 !== 0) {
             this.bloc3.innerHTML = this.currentCalcul.responseArray[2].toFixed(2);
         }
+
+        this.initTimerBar();
+
     }
 
     clickResponse(e){
@@ -275,5 +297,6 @@ export default class {
 
     shutdown() {
         this.ui.remove();
+        clearInterval(this.TimerBarHandler);
     }
 }

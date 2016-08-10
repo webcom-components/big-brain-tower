@@ -52,16 +52,33 @@ export default class {
 					<input id="username" type="text" placeholder="your name" />
 				</div>
 				<div style="margin-top:1em">
-					<input type="submit" value="login" style="display:block; width: 100%"/>
+					<input id="loginBtn" type="submit" value="login" style="display:block; width: 100%" disabled/>
 				</div>
 			</form>
 		</div>`)
+        .on('keyup', 'input[type=text]', function(e) {
+            if ($(this).val().length) {
+                const loginBtn = document.getElementById('loginBtn');
+                loginBtn.disabled = false;
+            }
+        })
 		.on('click', 'input[type=submit]', e => {
 			e.preventDefault();
-			game.state.start('Menu');
+            const username = document.getElementById('username').value;
+            if (username) {
+                localStorage.setItem('login', username);
+                game.state.start('Menu');                
+            }
 		});
 
 		this.overlay.appendTo(document.body);
+
+        const cachedLogin = localStorage.getItem('login');
+        if (cachedLogin) {
+            document.getElementById('username').value = cachedLogin;
+            const loginBtn = document.getElementById('loginBtn');
+            loginBtn.disabled = false;
+        }
 	}
 
 	update() {

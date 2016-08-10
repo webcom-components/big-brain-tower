@@ -77,10 +77,6 @@ export default class {
 		this.game.input.keyboard.onDownCallback = function() {
 			this.game.state.start("Menu");
 		};
-/*
-		$('body').keypress(function() {
-		}, this);
-		*/
 	}
 
 	update() {

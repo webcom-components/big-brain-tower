@@ -101,7 +101,12 @@ body{
 
 .timerBloc {
 	background: #8f8f8f;
-	padding: 18px;
+	height: 2em;
+}
+
+.timeElapsed {
+	background-color: #fbd23e;
+	height: 100%;
 }
 
 @media all and (min-width: 400px) {
@@ -208,4 +213,7 @@ input:focus {
 h1{
 	text-shadow: 3px 3px 1px 1px rgba(0, 0, 0, 0.2);
 	color: black;
+}
+.required {
+	color: red;
 }

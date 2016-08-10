@@ -6,9 +6,15 @@ const config = {
 	entry: {
 		vendor: [
 			'script!phaser',
-			'script!jquery'
+			'script!jquery',
+			'imports?exports=>false&module=>false!webcom'
 		],
 		app: './src/js/index.js'
+	},
+	resolve: {
+		alias: {
+			webcom: 'webcom/webcom.js'
+		}
 	},
 	output: {
 		path: path.join(__dirname, './dist'),
@@ -21,6 +27,9 @@ const config = {
 			{ test: /\.(jpg)|(png)$/, loader: 'file?name=assets/images/[name].[ext]'},
 			{ test: /\.frag$/, loader: 'file?name=assets/shaders/[name].[ext]'},
 			{ test: /\.css$/, loader: 'style!css?sourceMap'}
+		],
+		noParse: [
+			/webcom\.js$/
 		]
 	},
 	plugins: [
