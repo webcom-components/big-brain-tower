@@ -51,9 +51,9 @@ export default class {
 
         this.overlay = $(`<div class="overlay content-center">
 			<div style="color:#FFF; width:50%">			
-				<h1>Game Over</h1>
-                <p style="padding-bottom: 1em;">Your score is ${window.score}</p>
-                <p style="padding-bottom: 1em;">Your best score is <span id="bestScore">0</span></p>
+				<h1>game over</h1>
+                <p style="padding-bottom: 1em;">your score is ${window.score}</p>
+                <p style="padding-bottom: 1em;">your best score is <span id="bestScore">0</span></p>
 
 				<table style="width:100%">
                     <form class="menu">
@@ -83,7 +83,7 @@ export default class {
     displayBestScore(login) {
         const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
         ref.on('value', snap => {
-            document.getElementById('bestScore').innerHTML = snap.val().score || 0;
+            document.getElementById('bestScore').innerHTML = (snap.val() && snap.val().score) || 0;
         }); 
     }
 
@@ -91,7 +91,7 @@ export default class {
         return new Promise(resolve => {
             const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
             ref.once('value', snap => {
-                resolve(snap.val().score || 0);
+                resolve((snap.val() && snap.val().score) || 0);
             }); 
         })
     }
