@@ -101,6 +101,7 @@ export default class {
             return new Promise(resolve => {
                 bestScore = Number(bestScore);
                 if (score > bestScore) {
+                    login = login.replace('/','');
                     const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
                     ref.update({
                         score
