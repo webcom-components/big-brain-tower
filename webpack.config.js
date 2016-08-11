@@ -59,7 +59,7 @@ else {
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin(),
 		new webpack.DefinePlugin({
-			__NAMESPACE__: json.stringify('https://io.datasync.orange.com/base/bigbraintower'),
+			__NAMESPACE__: JSON.stringify('https://io.datasync.orange.com/base/bigbraintower'),
 			'process.env': {
 				NODE_ENV: JSON.stringify('production')
 			}
