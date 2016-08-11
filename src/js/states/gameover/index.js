@@ -75,7 +75,7 @@ export default class {
             this.game.state.start("Game");
         });
 
-        const login = localStorage.getItem('login');
+        const login = localStorage.getItem('login').replace('/', '');
         this.displayBestScore(login);
         this.saveBestScore(login, window.score);
     }
@@ -101,7 +101,6 @@ export default class {
             return new Promise(resolve => {
                 bestScore = Number(bestScore);
                 if (score > bestScore) {
-                    login = login.replace('/','');
                     const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
                     ref.update({
                         score
