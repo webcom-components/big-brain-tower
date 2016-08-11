@@ -1,5 +1,5 @@
 import {
-	getHighestScores
+	getBestScores
 } from '../../util/data';
 
 import {
@@ -57,8 +57,9 @@ export default class {
 
 		const game = this.game;
 
-		this.overlay = $(`<div class="overlay content-center">
-			<div style="margin-bottom: 1em;" class="scoreContent">
+		this.overlay = $(`
+		<div class="overlay content-center">
+			<div style="margin-bottom: 1em;width:50%" class="scoreContent">
 				<table id="scoreTable" class="scores">
 				</table>
 			</div>
@@ -77,14 +78,14 @@ export default class {
 	}
 
 	initBestScores() {
-		getHighestScores().then(scores => {
+		getBestScores().then(scores => {
 			if (scores.length) {
-				$('<h1>Meilleurs joueurs</h1>').prependTo('.scoreContent');
+				$('<h1>Best players</h1>').prependTo('.scoreContent');
 				const table = document.getElementById('scoreTable');
 				const scoreRows = scores.map(p => $(`
 					<tr>
 						<td>${escapeHtml(p.name)}</td>
-						<td>${p.score}</td>
+						<td>${p.val}</td>
 					</tr>
 				`));
 				scoreRows.forEach(r => r.appendTo(table));

@@ -1,13 +1,12 @@
 import { expect } from 'chai';
 import {
-    getHighestScores,
+    getBestScores,
 } from '../src/js/util/data.js';
 
-/* --------------------------------------------------------- LEVEL ZERO */
 
 describe('data', function() {
-	it('get highest scores', done => {
-		getHighestScores().then(scores => {
+	it('get best scores', done => {
+		getBestScores().then(scores => {
 			expect(scores).to.be.a('array');
 			done();
 		}).catch(err => {

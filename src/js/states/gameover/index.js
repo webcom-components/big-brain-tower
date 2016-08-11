@@ -1,3 +1,13 @@
+import {
+	escapeForWebcom,
+	isEmail
+} from '../../util/other';
+
+import {
+	getBestScore,
+	saveScore
+} from '../../util/data';
+
 require("../../../assets/images/logo.png");
 require("../../../assets/images/cloud1.png");
 require("../../../assets/images/cloud2.png");
@@ -5,117 +15,115 @@ require("../../../assets/styles/index.css");
 
 export default class {
 
-    preload() {
-        this.game.load.image('tower', 'assets/images/tower3.png');
-        this.game.load.image('logo', 'assets/images/logo.png');
-        this.game.load.image('towerFilter', 'assets/images/towerFilter1.png');
-        this.game.load.image('onelife', 'assets/images/onelife.png');
-        this.game.load.image('nolife', 'assets/images/nolife.png');
-        this.game.load.image('cloud1', 'assets/images/cloud1.png');
-        this.game.load.image('cloud2', 'assets/images/cloud2.png');
-        this.game.load.image('arrow', 'assets/images/arrow1.png');
-    }
+	preload() {
+		this.game.load.image('tower', 'assets/images/tower3.png');
+		this.game.load.image('logo', 'assets/images/logo.png');
+		this.game.load.image('towerFilter', 'assets/images/towerFilter1.png');
+		this.game.load.image('onelife', 'assets/images/onelife.png');
+		this.game.load.image('nolife', 'assets/images/nolife.png');
+		this.game.load.image('cloud1', 'assets/images/cloud1.png');
+		this.game.load.image('cloud2', 'assets/images/cloud2.png');
+		this.game.load.image('arrow', 'assets/images/arrow1.png');
+	}
 
-    constructor(game) {
+	constructor(game) {
 
-    }
+	}
 
-    create() {
-        this.background;
-        this.gameplay;
-        this.gui;
-        this.cloud;
-        this.timerClouds = 0;
-        this.game.time.events.duration;
-        this.cloudSwitch = true;
+	create() {
+		this.background;
+		this.gameplay;
+		this.gui;
+		this.cloud;
+		this.timerClouds = 0;
+		this.game.time.events.duration;
+		this.cloudSwitch = true;
 
-        //  Background ----------------
-        this.background = this.game.add.physicsGroup();
+		//  Background ----------------
+		this.background = this.game.add.physicsGroup();
 
-        ////>sky
-        this.background.stage.backgroundColor = "#4ab4e6";
-        this.background.stage.position = 'absolute';
+		////>sky
+		this.background.stage.backgroundColor = "#4ab4e6";
+		this.background.stage.position = 'absolute';
 
-        ////>clouds
-        this.cloud = this.background.game.add.physicsGroup();
-        for (var i= 0; i<5; i++){
-            var y =  this.game.rnd.between(0,800);
-            var x =  this.game.rnd.between(0,600);
-            var cloud1 = this.cloud.create(x, y, i%2 === 0 ? 'cloud1' :'cloud2');
-            cloud1.body.velocity.x = this.game.rnd.between(2, 10);
-        }
-        ////>logo
-        this.game.add.sprite(680, 0, 'logo');
+		////>clouds
+		this.cloud = this.background.game.add.physicsGroup();
+		for (var i= 0; i<5; i++){
+			var y =  this.game.rnd.between(0,800);
+			var x =  this.game.rnd.between(0,600);
+			var cloud1 = this.cloud.create(x, y, i%2 === 0 ? 'cloud1' :'cloud2');
+			cloud1.body.velocity.x = this.game.rnd.between(2, 10);
+		}
+		////>logo
+		this.game.add.sprite(680, 0, 'logo');
 
-        const game = this.game;
+		const game = this.game;
 
-        this.overlay = $(`<div class="overlay content-center">
-			<div style="color:#FFF; width:50%">			
-				<h1>game over</h1>
-                <p style="padding-bottom: 1em;">your score is ${window.score}</p>
-                <p style="padding-bottom: 1em;">your best score is <span id="bestScore">0</span></p>
-
-				<table style="width:100%">
-                    <form class="menu">
-                        <input type="submit" value="play again" style="display:block; width: 100%"/>
-                    </form>
-				</table>
+		this.overlay = $(`<div class="overlay content-center">
+			<div style="color:#FFF; width:50%">
+				<form class="login">
+					<h1>game over</h1>
+					<p style="padding-bottom: 1em;">your score is ${window.score}</p>
+				</form>
 			</div>
-		</div>`)
-            .on('click', 'input[type=submit]', function(e) {
-            e.preventDefault();
-            game.state.start('Menu')
-        });
+		</div>`);
 
-        this.overlay.appendTo(document.body);
-       
-        this.game.input.keyboard.addCallbacks(this, e => {
-            this.game.input.keyboard.destroy();
-            this.game.input.keyboard.start();
-            this.game.state.start("Game");
-        });
+		this.overlay.appendTo(document.body);
+	   
+		this.saveBestScore(window.score);
+	}
 
-        const login = localStorage.getItem('login').replace('/', '');
-        this.displayBestScore(login);
-        this.saveBestScore(login, window.score);
-    }
+	displayLoginForm() {
+		return new Promise(resolve => {
+			 const form = $(`
+			 	<div id="saveBlock" style="display:flex; width: 100%">
+					<input id="username" type="text" placeholder="your email" style="flex:1; width: 100%" />
+					<input id="loginBtn" type="submit" value="Save your score" disabled style="margin-left:1em" />
+				</div>
+			`).on('keyup', 'input[type=text]', function(e) {
+				const loginBtn = document.getElementById('loginBtn');
+				loginBtn.disabled = !(isEmail($(this).val()));
+			}).on('click', 'input[type=submit]', e => {
+				e.preventDefault();
+				const username = $('#username').val();
+				if (username) {
+					localStorage.setItem('login', username);
+					return resolve(username);
+				}
+			});
 
-    displayBestScore(login) {
-        const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
-        ref.on('value', snap => {
-            document.getElementById('bestScore').innerHTML = (snap.val() && snap.val().score) || 0;
-        }); 
-    }
+			form.appendTo('.overlay .login');
+			const cachedLogin = localStorage.getItem('login');
+			if (cachedLogin) {
+				$('#username').val(cachedLogin);
+				$('#loginBtn').attr('disabled', !isEmail(cachedLogin));
+			}
+		});
+	}
 
-    getBestScore(login) {
-        return new Promise(resolve => {
-            const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
-            ref.once('value', snap => {
-                resolve((snap.val() && snap.val().score) || 0);
-            }); 
-        })
-    }
+	saveBestScore(score) {
+		let login;
+		this.displayLoginForm()
+			.then(l => {
+				login = l;
+				return getBestScore(login);
+			})
+			.then(bestScore => {
+				if (score > bestScore) {
+					return saveScore(login, score)
+						.then(() => {
+							this.game.state.start('Menu')
+						});
+				}
+				this.game.state.start('Menu');
+			});
+	}
 
-    saveBestScore(login, score) {
-        return this.getBestScore(login).then(bestScore => {
-            return new Promise(resolve => {
-                bestScore = Number(bestScore);
-                if (score > bestScore) {
-                    const ref = new Webcom(`https://io.datasync.orange.com/base/bigbraintower/scores/${login}`);
-                    ref.update({
-                        score
-                    }, () => resolve);
-                }
-                resolve();
-            });            
-        })
-    }
+	update() {
 
-    update() {
+	}
 
-    }
-
-    shutdown() {
-        this.overlay.remove();
-    }
+	shutdown() {
+		this.overlay.remove();
+	}
 }
