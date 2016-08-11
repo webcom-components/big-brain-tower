@@ -162,13 +162,21 @@ export default class {
     getCurrentTime() {
         return new Date().getTime() / 1000;
     }
+    
+    getElapsedTime() {
+        return this.getCurrentTime() - this.startTime;
+    }
+
+    getRemainingTime() {
+        return this.currentCalcul.timer - this.getElapsedTime();
+    }
 
     initTimerBar() {
         this.startTime = this.getCurrentTime();
         this.timeElapsedBloc = document.getElementsByClassName("timeElapsed")[0];
         clearInterval(this.TimerBarHandler);
         this.TimerBarHandler = setInterval(() => {
-            const width = ((this.getCurrentTime() - this.startTime) / this.currentCalcul.timer) * 100;
+            const width = (this.getElapsedTime() / this.currentCalcul.timer) * 100;
             if (width >= 100) {
                 this.checkAnswer();
             }
@@ -215,7 +223,7 @@ export default class {
         if (r === this.currentCalcul.responseNumber ){
             this.iteration ++;
             this.iterationText.setText(this.iterationString + this.iteration + " / 10");
-            this.score = this.score + (22 * (this.level+1));
+            this.score = this.score + (10 * (this.level+1)) + Math.round(this.getRemainingTime() * 3);
             this.scoreText.setText(this.scoreString + this.score);
             this.floorUp();
         }
