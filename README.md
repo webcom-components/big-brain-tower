@@ -44,7 +44,26 @@ Launch tests into browser for debugging purposes
 npm run test:debug
 ```
 
-## [Trello](https://trello.com/b/dClcMFGi/big-brain-tower)
+## [Roadmap](https://trello.com/b/dClcMFGi/big-brain-tower)
+
+## Security rule
+
+To prevent hackers to erase namespace data, provide these security rules into your namespace
+
+```json
+{
+  "rules": {
+    "scores": {
+      ".read": true,
+      "$score_entry": {
+        ".write": " !data.exists() ",
+        ".validate": "newData.child('name').isString() && newData.child('val').isNumber()"
+      }
+    }
+  }
+}
+```
+
 
 ## License
 
