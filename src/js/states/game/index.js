@@ -60,7 +60,7 @@ export default class {
         this.bloc2;
         this.bloc3;
 
-        this.initPause();
+        //this.initPause();
 
         this.game.time.events.duration;
 
@@ -263,38 +263,7 @@ export default class {
             this.game.state.start('Game Over');
         }
     }
-
-    displayPause() {
-        this.overlay = $(`<div class="overlay content-center">
-			<h1 style="color:#FFF">Pause</h1>
-		</div>`);
-
-        this.overlay.appendTo(document.body);
-    }
-
-    hidePause() {
-        if (this.overlay) {
-            this.overlay.remove();
-        }
-    }
-
-    initPause() {
-        this.game.input.keyboard.onDownCallback = e => {
-            if (!this.game.paused) {
-                if (e.keyCode === Phaser.Keyboard.ESC) {
-                    this.game.paused = true;
-                    if (this.game.paused) {
-                        this.displayPause();
-                    }
-                }
-            }
-            else {
-                this.game.paused = false;
-                this.hidePause();
-            }
-        };
-    }
-
+   
     shutdown() {
         this.ui.remove();
         clearInterval(this.TimerBarHandler);
