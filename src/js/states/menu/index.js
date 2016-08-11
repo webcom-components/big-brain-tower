@@ -2,6 +2,10 @@ import {
 	getHighestScores
 } from '../../util/data';
 
+import {
+	escapeHtml
+} from '../../util/other'
+
 require("../../../assets/images/logo.png");
 require("../../../assets/images/cloud1.png");
 require("../../../assets/images/cloud2.png");
@@ -79,7 +83,7 @@ export default class {
 				const table = document.getElementById('scoreTable');
 				const scoreRows = scores.map(p => $(`
 					<tr>
-						<td>${p.name}</td>
+						<td>${escapeHtml(p.name)}</td>
 						<td>${p.score}</td>
 					</tr>
 				`));
