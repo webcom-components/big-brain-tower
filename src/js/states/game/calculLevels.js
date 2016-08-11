@@ -123,7 +123,7 @@ export function getCalcul(level) {
     var cs = calculString(level);
     return{
         calculString: cs,
-        responseNumber: eval(cs),
+        responseNumber: Number(eval(cs).toFixed(2)),
         responseArray: propReponses(eval(cs)),
         timer: getTime(level)
     };

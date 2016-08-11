@@ -212,7 +212,7 @@ export default class {
     }
 
     checkAnswer(r){
-        if (r === this.currentCalcul.responseNumber || r === this.currentCalcul.responseNumber.toFixed(2) ){
+        if (r === this.currentCalcul.responseNumber ){
             this.iteration ++;
             this.iterationText.setText(this.iterationString + this.iteration + " / 10");
             this.score = this.score + (22 * (this.level+1));
