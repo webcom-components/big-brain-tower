@@ -64,7 +64,7 @@ export default class {
 		</div>`)
             .on('click', 'input[type=submit]', function(e) {
             e.preventDefault();
-            game.state.start('Game')
+            game.state.start('Menu')
         });
 
         this.overlay.appendTo(document.body);

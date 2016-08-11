@@ -1,3 +1,7 @@
+import {
+	getHighestScores
+} from '../../util/data';
+
 require("../../../assets/images/logo.png");
 require("../../../assets/images/cloud1.png");
 require("../../../assets/images/cloud2.png");
@@ -50,6 +54,10 @@ export default class {
 		const game = this.game;
 
 		this.overlay = $(`<div class="overlay content-center">
+			<div style="margin-bottom: 1em;" class="scoreContent">
+				<table id="scoreTable" class="scores">
+				</table>
+			</div>
 			<form class="menu">
 				<input type="submit" value="play" style="display:block; width: 100%; padding: 10px 3em"/>
 			</form>
@@ -60,6 +68,24 @@ export default class {
 		});
 
 		this.overlay.appendTo(document.body);
+
+		this.initBestScores();
+	}
+
+	initBestScores() {
+		getHighestScores().then(scores => {
+			if (scores.length) {
+				$('<h1>Meilleurs joueurs</h1>').prependTo('.scoreContent');
+				const table = document.getElementById('scoreTable');
+				const scoreRows = scores.map(p => $(`
+					<tr>
+						<td>${p.name}</td>
+						<td>${p.score}</td>
+					</tr>
+				`));
+				scoreRows.forEach(r => r.appendTo(table));
+			}
+		});
 	}
 
 	update() {
